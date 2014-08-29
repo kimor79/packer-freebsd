@@ -1,0 +1,5 @@
+#!/bin/sh
+
+# Send to /dev/null to avoid having to page through the list of changed files
+freebsd-update fetch >/dev/null
+freebsd-update install

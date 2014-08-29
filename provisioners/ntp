@@ -1,0 +1,4 @@
+#!/bin/sh
+
+echo 'ntpd_enable="YES"' > /etc/rc.conf.d/ntpd
+echo 'ntpdate_enable="YES"' > /etc/rc.conf.d/ntpdate

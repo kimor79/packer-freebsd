@@ -1,0 +1,10 @@
+#!/bin/sh
+
+pkg install -qy virtualbox-ose-additions
+
+echo 'vboxguest_enable="YES"' > /etc/rc.conf.d/vboxguest
+
+cat > /etc/rc.conf.d/vboxservice <<'EOF'
+vboxservice_enable="YES"
+vboxservice_flags="${vboxservice_flags} --disable-timesync"
+EOF

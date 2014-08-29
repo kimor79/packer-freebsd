@@ -1,0 +1,19 @@
+PARTITIONS='ada0 { auto freebsd-ufs / }'
+DISTRIBUTIONS='base.txz kernel.txz lib32.txz ports.txz src.txz' 
+
+#!/bin/sh
+cp /usr/share/zoneinfo/UTC /etc/localtime
+
+cat >> /etc/rc.conf <<EOF
+ifconfig_em0="DHCP"
+dumpdev="AUTO"
+EOF
+
+mkdir -p /etc/rc.conf.d
+
+echo 'sshd_enable="YES"' > /etc/rc.conf.d/sshd
+
+# Root login over ssh is temporary during packer build
+sed -i -e 's/^#PermitRootLogin .*/PermitRootLogin yes/' /etc/ssh/sshd_config
+
+echo 'root' | pw usermod root -h 0

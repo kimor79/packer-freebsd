@@ -1,0 +1,21 @@
+#!/bin/sh
+
+pkg install -qy security/sudo shells/bash
+
+# pw(8) says not to provide a path for shell but not doing so gives
+#  "pw: no default shell available or defined"
+# and I don't feel like messing with /etc/pw.conf just for this
+echo 'vagrant' | pw useradd vagrant -G wheel -h 0 -m -s /usr/local/bin/bash
+
+echo 'vagrant' | pw usermod root -h 0
+
+cat > /usr/local/etc/sudoers.d/vagrant <<'EOF'
+vagrant ALL=(ALL) NOPASSWD: ALL
+EOF
+
+chmod 0440 /usr/local/etc/sudoers.d/vagrant
+
+install -d -o vagrant -g vagrant -m 0700 /home/vagrant/.ssh
+fetch -o /home/vagrant/.ssh/authorized_keys \
+	https://github.com/mitchellh/vagrant/raw/master/keys/vagrant.pub
+chown vagrant:vagrant /home/vagrant/.ssh/authorized_keys

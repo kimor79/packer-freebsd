@@ -1,0 +1,7 @@
+#!/bin/sh
+
+pkg install -y security/ca_root_nss
+
+# The option to create /etc/ssl/cert.pem (as a symlink) is off by default so
+# the pkg install won't create it
+ln -fs /usr/local/share/certs/ca-root-nss.crt /etc/ssl/cert.pem

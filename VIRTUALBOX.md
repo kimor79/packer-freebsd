@@ -1,7 +1,7 @@
 VirtualBox Specific
 ===================
 
-The following have been added to the image (in addition to those listed in in [README.md](README.md)):
+The following have been added to the image (in addition to those listed in [README.md](README.md)):
 
   * The virtualbox-ose-additions package is installed
   * Root password is set to *root*

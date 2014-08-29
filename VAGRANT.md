@@ -5,6 +5,8 @@ The following have been added to the image (in addition to those listed in [READ
 
   * For VirtualBox: See [VIRTUALBOX.md](VIRTUALBOX.md)
   * Root password is set to *vagrant*
+  * The bash package is installed
+  * The sudo package is installed
   * The user *vagrant* has been added with password *vagrant* and authorized_keys from https://github.com/mitchellh/vagrant/raw/master/keys/vagrant.pub
 
 To build a VirtualBox Vagrant box:
